@@ -1,0 +1,226 @@
+Develop Enviroment (Windows 10) - Eclipse Mars JEE - JBOSS Wildfly - PostgreSQL
+
+Step 1 - Instalação do Java
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+
+http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-windows-x64.exe?AuthParam=1485179469_6fff4b600d1ec51bc262c470db129319
+
+Use folder install "C:\Program Files\Java\jdk1.8.0_121"
+
+
+Set the JAVA_HOME Variable
+
+JAVA_HOME = C:\Program Files\Java\jdk1.8.0_121
+
+Step 1 - PostgreSQL 9.6.2-windows-x64
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+https://www.postgresql.org/download/windows/
+
+https://www.enterprisedb.com/downloads/postgres-postgresql-downloads#windows
+
+Criar um usuário taghuntschool com senha postgres
+
+Criar um banco de dados taghuntschool com o owner taghuntschool
+
+
+Step 2 - JBOSS Wildfly
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+http://download.jboss.org/wildfly/8.2.1.Final/wildfly-8.2.1.Final.zip
+
+Descompactar como C:\JBOSS WildFly8\
+
+
+Step 3 - Eclipse IDE for Java EE Developers -- Windows 64-bit
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+http://www.eclipse.org/downloads
+
+http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/2/eclipse-jee-mars-2-win32-x86_64.zip
+
+Descompactar como C:\Eclipse Mars2\
+
+Execute o eclipse 
+
+Escolha o workspace C:\Eclipse Mars2\workspace
+
+- No menu Help >> Eclipse Marketplace >> JBOSS Tools >> Install
+
+- No menu Help >> Eclipse Marketplace >> m2e (Maven Integration for Eclipse) >> Instaled, e caso não instalado, Install or Update
+
+- No menu Help >> Eclipse Marketplace >> Subclipse
+
+Step 4 - JDK no Eclipse
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+Execute o eclipse 
+
+Escolha o workspace C:\Eclipse Mars2\workspace
+
+- No menu Windows >> Preferences >> Java >> Installed JREs
+
+Click "Add" button
+
+Select "Standard VM" option and click "Next" button
+
+Click "Directory" button
+
+Select "C:\Program Files\Java\jdk1.8.0_121"
+
+Click "Finish" button
+
+Select checkbox on "jdk1.8.0_121"
+
+Click "OK" button
+
+Step 4 - JBOSS WildFly no Eclipse
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+Execute o eclipse 
+
+Escolha o workspace C:\Eclipse Mars2\workspace
+
+- No menu Windows >> Preferences >> Server >> Runtime Environments
+
+Click "Add" button
+
+Escolha Wildfly 8.x Runtime
+
+Home Folder: C:\JBOSS WildFly8\wildfly-8.2.1.Final
+
+- No menu Windows >> Show View >> Servers
+
+clicar no link "No servers available. Click this link to crate a new server"
+
+Escolha Wildfly 8.x
+
+- No menu Windows >> Show View >> Servers >> Wildfly 8.x >> Start
+
+	\-> http://localhost:9990
+
+Your WildFly Application Server is running.
+
+However you have not yet added any users to be able to access the admin console.
+
+To add a new user execute the add-user.bat script within the bin folder of your WildFly installation and enter the requested information.
+
+By default the realm name used by WildFly is "ManagementRealm" this is already selected by default.
+
+	\-> Command Prompt
+
+		c:> cd "C:\JBOSS WildFly8\wildfly-8.2.1.Final\bin"
+		C:\JBOSS WildFly8\wildfly-8.2.1.Final\bin> add-user.bat
+
+
+What type of user do you wish to add?
+ a) Management User (mgmt-users.properties)
+ b) Application User (application-users.properties)
+(a): a
+
+Enter the details of the new user to add.
+Using realm 'ManagementRealm' as discovered from the existing property files.
+Username : admin
+The username 'admin' is easy to guess
+Are you sure you want to add user 'admin' yes/no? yes
+Password recommendations are listed below. To modify these restrictions edit the
+ add-user.properties configuration file.
+ - The password should not be one of the following restricted values {root, admi
+n, administrator}
+ - The password should contain at least 8 characters, 1 alphabetic character(s),
+ 1 digit(s), 1 non-alphanumeric symbol(s)
+ - The password should be different from the username
+Password : 
+JBAS015266: Password must have at least 1 digit.
+Are you sure you want to use the password entered yes/no? yes
+Re-enter Password : 
+What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]:
+About to add user 'admin' for realm 'ManagementRealm'
+Is this correct yes/no? yes
+Added user 'admin' to file 'C:\JBOSS WildFly8\wildfly-8.2.1.Final\standalone\configuration\mgmt-users.properties'
+Added user 'admin' to file 'C:\JBOSS WildFly8\wildfly-8.2.1.Final\domain\configuration\mgmt-users.properties'
+Added user 'admin' with groups  to file 'C:\JBOSS WildFly8\wildfly-8.2.1.Final\standalone\configuration\mgmt-groups.properties'
+Added user 'admin' with groups  to file 'C:\JBOSS WildFly8\wildfly-8.2.1.Final\domain\configuration\mgmt-groups.properties'
+Is this new user going to be used for one AS process to connect to another AS process?
+e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
+yes/no? yes
+To represent the user add the following to the server-identities definition <secret value="YWRtaW5hZG1pbg==" />
+Pressione qualquer tecla para continuar. . .
+
+
+Step 5 - JDBC driver - JBOSS WildFly
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+https://jdbc.postgresql.org/download.html
+
+https://jdbc.postgresql.org/download/postgresql-9.4.1208.jar
+
+
+C:\temp\postgresql-9.4.1208.jar
+
+	\-> Command Prompt
+
+		c:> cd "C:\JBOSS WildFly8\wildfly-8.2.1.Final\bin"
+		C:\JBOSS WildFly8\wildfly-8.2.1.Final\bin>  jboss-cli.bat
+
+You are disconnected at the moment. Type 'connect' to connect to the server or '
+help' for the list of supported commands.
+[disconnected /] connect
+[standalone@localhost:9990 /] module add --name=org.postgres --resources=c:\Temp\postgresql-9.4.1208.jar  --dependencies=javax.api,javax.transaction.api
+[standalone@localhost:9990 /] /subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgres",driver-module-name="org.postgres",driver-class-name=org.postgresql.Driver)
+{"outcome" => "success"}
+[standalone@localhost:9990 /] exit
+
+
+- No menu Windows >> Show View >> Servers >> Wildfly 8.x >> Restart
+
+Acessando o http://localhost:9990
+
+Escolher no menu: Configuration >> Datasources >> Add
+
+Name: taghuntschoolDS
+
+JNDI Name: java:jboss/datasources/taghuntschoolDS
+
+Pressionar "Next"
+
+Selecionar na lista "Detected Driver" o  driver com nome "postgres"
+
+Pressionar "Next"
+
+Connection URL: jdbc:postgresql://localhost:5432/taghuntschool
+
+Username: taghuntschool
+
+Senha: ******
+
+Pressionar "Next"
+
+Na lista de Datasources selecionar o com nome "taghuntschoolDS" e pressionar "Enable"
+
+Quando uma caixa de diálogo for mostrada pressione "Confirm"
+
+
+Step 6 - Configurar o Envio de e-mail
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+Acessando o http://localhost:9990
+
+Escolher no menu: Configuration >> Conector >> Mail 
+
+Selecionar a opção "Edit" acima do campo "JNDI Name"
+Preencher o campo "Default From" com o e-mail desejado.
+
+Na lista "Mail Sessions", no item com JNDI Name igual a "java:jboss/mail/Default" selecionar a opção "View" e depois a opção "Edit" logo acima do campo "Socket Binding"
+
+Marcar o checkbox "User SSL?" e preencher os campos Username e Password
+
+Pressionar "Save"
+
+Depois escolher no menu: Configuration >> General Configuration >> Socket Binding
+Na lista "Socket Bindings Groups", no item com coluna "Name" igual a "standard-sockets", selecionar a opção "View", depois selecionar a aba "Outbound Remote" e depois escolher a opção "Edit"
+Substituir o conteúdo do campo Host de "localhost" para o servidor smtp desejado e do campo Port de "27" para o número da porta desejada (por exemplo "465").
+
+Pressionar "Save"

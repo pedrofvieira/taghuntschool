@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<!-- 
+	Taghunt School - Platform for creating games as a tool to support education
+    Copyright (C) 2017 Pedro Fernandes Vieira
+	
+    This file is part of Taghunt School.
+
+    Taghunt School is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Taghunt School is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Taghunt School.  If not, see <http://www.gnu.org/licenses/>.
+
+--> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+	<f:facet name="first">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</f:facet>
+
+    <title>>Taghunt School</title>
+	<link rel="shortcut icon" href="" />
+	<h:outputStylesheet library="taghuntschool" name="styles/custom.css" />
+	<h:outputStylesheet library="taghuntschool" name="styles/layout.css" />
+	<h:outputStylesheet library="taghuntschool" name="styles/components.css" />
+	<h:outputStylesheet library="taghuntschool" name="styles/bootstrap-3.3.5-dist/css/bootstrap.css" />
+	<h:outputStylesheet library="taghuntschool" name="styles/bootstrap-3.3.5-dist/css/bootstrap-custom.css" />
+	<h:outputStylesheet library="taghuntschool" name="styles/metisMenu-master/css/metisMenu.min.css" />
+	<h:outputStylesheet library="taghuntschool" name="styles/sb-admin-2/css/sb-admin-2.css" />
+
+	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />	
+	<h:outputScript target="body" library="taghuntschool" name="javascripts/bootstrap-3.3.5-dist/js/bootstrap.min.js" />
+	<h:outputScript target="body" library="taghuntschool" name="javascripts/metisMenu-master/js/metisMenu.min.js" />
+	<h:outputScript target="body" library="taghuntschool" name="javascripts/sb-admin-2/js/sb-admin-2.js" />
+	<h:outputScript target="body" library="taghuntschool" name="javascripts/app.js" />
+	<h:outputScript target="body" library="taghuntschool" name="javascripts/clipboard.min.js" />
+
+	<h:outputScript target="body">
+			var clipboard = new Clipboard('.btn');
+	</h:outputScript>
+
+</h:head>
+
+<h:body>
+
+	<header class="aw-topbar">
+		<a class="aw-page-title" href="#"><i class="fa fa-graduation-cap fa-fw fa-lg"></i><strong>Taghunt School</strong></a>
+		
+		<a href="#" class="aw-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
+	</header>
+	
+	<aside class="aw-sidebar  js-sidebar">
+		<ui:insert name="menu">
+			<ui:include src="/WEB-INF/templates/StudentMenu.xhtml" />
+		</ui:insert>
+	</aside>
+	
+	<section class="aw-content  js-content">
+		<ui:insert name="content" />
+	</section>
+	
+	<footer>
+		<h6 style="text-align: center">Hosted by <a href="http://portal.ifba.edu.br/">Instituto Federal de Educação, Ciência e Tecnologia da Bahia - IFBA</a></h6>
+	</footer>
+
+</h:body>
+
+</html>

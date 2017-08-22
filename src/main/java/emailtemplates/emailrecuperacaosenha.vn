@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+   <style type="text/css">  
+</style>
+</HEAD>
+<BODY>
+	<div>
+			Prezado(a) ${usuario.name},<br><br>
+			
+			A sua solicita&ccedil;&atilde;o de recupera&ccedil;&atilde;o da senha de usu&aacute;rio foi registrada com sucesso.<br>
+			<ul>
+				<li>Nome: ${usuario.name} </li>
+				<li>Login: ${usuario.username} </li>
+				<li>Email: ${usuario.email} </li>
+			</ul>
+			
+			Para finalizar o processo de recupera&ccedil;&atilde;o da senha basta clicar no link a seguir.<br>
+			
+			<a href ="${context}pages&#47;public&#47;recuperacaoSenhaUsuario.xhtml?grupo=2&chave=${loginHash}">Clique aqui para recuperar a senha</a><br><br>
+			
+			Caso voc&ecirc; n&atilde;o tenha solicitado a recupera&ccedil;&atilde;o de senha, por favor, desconsidere este e-mail.
+			
+			Atenciosamente,<br><br>
+			
+			Plataforma Taghunt School<br>
+			Desenvolvido por Pedro Fernandes Vieira <a href="mailto:pfv@cin.ufpe.br"> pfv@cin.ufpe.br</a><br>
+			Pesquisa de Mestrado Profissional Cin/UFPE<br>
+			Com apoio do Instituto Federal de Educa&ccedil;&atilde;o, Ci&ecirc;ncia e Tecnologia da Bahia - IFBA<br>
+</div>
+</BODY>
+</HTML>	

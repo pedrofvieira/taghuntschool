@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html>
+<!-- 
+    Taghunt School - uma plataforma para criação de jogos como ferramenta de apoio à educação
+    Copyright (C) 2017 Pedro Fernandes Vieira
+ 
+    Este arquivo é parte da Taghunt School
+ 
+    Taghunt School é um software livre;  você pode redistribuí-lo e/ou modificá-lo sob os
+    termos da Licença Pública Geral GNU/GPL como publicada pela Free Software Foundation,
+    na versão 3 da Licença, ou (a seu critério) qualquer versão mais recente.
+ 
+    Este programa é distribuído na expectativa de ser útil, mas SEM QUALQUER GARANTIA; sem
+    mesmo a garantia implícita de COMERCIALIZAÇÃO ou de ADEQUAÇÃO A QUALQUER APLICAÇÃO 
+    EM PARTICULAR. Veja Licença Pública Geral GNU/GPL em português para maiores detalhes.
+ 
+    Você deve ter recebido uma cópia da Licença Pública Geral GNU/GPL, sob o título “LICENSE”,
+    junto com Taghunt School. Se não, acesse <http://www.gnu.org/licenses/>. 
+
+    
+	Taghunt School - Platform for creating games as a tool to support education
+    Copyright (C) 2017 Pedro Fernandes Vieira
+	
+    This file is part of Taghunt School.
+
+    Taghunt School is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Taghunt School is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Taghunt School.  If not, see <http://www.gnu.org/licenses/>.
+
+-->  
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    template="/WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="content">
+    	<h:body>
+    	<h:form id="form">
+    	
+			<div class="ui-fluid">
+			<p:panelGrid style="width: 100%; margin-top:20px">
+				<p:row>
+            		<p:column style="text-align: center">
+	           			<h:panelGroup layout="block" rendered="#{missionMB.newRecordMissionStep}">
+							<h2>Novo Passo da Missão</h2>
+        				</h:panelGroup>
+	           			<h:panelGroup layout="block" rendered="#{!missionMB.newRecordMissionStep}">
+							<h2>Alteração do Passo da Missão</h2>
+        				</h:panelGroup>
+					</p:column>		            	
+				</p:row>		            	
+				<p:row>
+					<p:column>
+    	
+						<p:panelGrid columns="2" layout="grid" styleClass="panelgrid-noborder"
+								columnClasses="ui-grid-col-4, ui-grid-col-8">
+								
+		                    <h:outputLabel value="Título da Missão: "  />
+		                    <h:outputText value="#{missionMB.missionEdited.title}" styleClass="outputLabel" />
+						
+						</p:panelGrid>
+						
+					</p:column>		            	
+				</p:row>		            	
+				<p:row>
+					<p:column>
+        	<p:panel id="panel">
+				
+				
+            	<p:growl id="growl" sticky="true" showDetail="true"/>
+            	<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+            	<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    				<h:graphicImage library="taghuntschool" name="images/ajaxloadingbar.gif" />
+				</p:dialog>
+				
+				<h:panelGroup id="missionStepPanel" layout="block" styleClass="ui-fluid">
+					
+					<p:wizard id="missionStepWizard" widgetVar="missionStepWizardWidget" 
+						flowListener="#{missionMB.onFlowProcessMissionStep}" showNavBar="false">
+					<p:tab id="missionStepCtabDados" title="Dados">
+						<p:messages id="msgmissionStepCtabDados" errorStyle="color:red" infoStyle="color:green" tooltip="true"/>
+						<p:panelGrid columns="2" layout="grid" styleClass="panelgrid-noborder"
+							columnClasses="ui-grid-col-4, ui-grid-col-8">
+						
+		                    <h:outputLabel value="Nome do Objeto: *" for="thingname" />
+		                    <p:inputText id="thingname" label="Nome do Objeto"  style="width: 420px;" value="#{missionMB.missionStepEdited.thingName}" required="true" requiredMessage="Nome do Objeto é obrigatório!" />
+
+		                    <h:outputLabel value="Dica para encontrar o objeto: *" for="tip" />
+		                    <p:inputTextarea id="tip" label="Dica"  value="#{missionMB.missionStepEdited.tip}" rows="10" cols="40" autoResize="false" required="true" requiredMessage="Dica é obrigatória!" />
+						
+						</p:panelGrid>
+						<h:panelGroup layout="block" style="text-align: center;">
+							<p:commandButton value="Cancelar" icon="fa fa-fw fa-remove" action="#{missionMB.returnManageMissionSteps()}" ajax="false" immediate="true" />
+							<p:commandButton value="Próximo" icon="fa fa-fw fa-arrow-right" action="#" onclick="PF('missionStepWizardWidget').next();" type="button" />
+						</h:panelGroup>
+					</p:tab>
+					<p:tab id="missionStepCtabConfirm" title="Confirmação">
+						<p:panelGrid columns="2" layout="grid" styleClass="panelgrid-noborder"
+							columnClasses="ui-grid-col-4, ui-grid-col-8">
+								
+			                    <h:outputLabel value="Nome do Objeto: "  />
+			                    <h:outputText value="#{missionMB.missionStepEdited.thingName}" styleClass="outputLabel" />
+			                    
+			                    <h:outputLabel value="Dica para encontrar o objeto: "  />
+			                    <h:outputText value="#{missionMB.missionStepEdited.tip}" styleClass="outputLabel" />
+			                    
+			                    <h:outputLabel rendered="#{!missionMB.newRecordMissionStep}" value="Endereço: "  />
+			                    <h:outputText rendered="#{!missionMB.newRecordMissionStep}" value="#{missionMB.missionStepEdited.missionStepURL}" />
+			                    
+						</p:panelGrid>
+						<h:panelGroup layout="block" style="text-align: center;">
+							<p:commandButton value="Anterior" icon="fa fa-fw fa-arrow-left" action="#" onclick="PF('missionStepWizardWidget').back();" type="button" />
+							<p:commandButton value="Cancelar" icon="fa fa-fw fa-remove" action="#{missionMB.returnManageMissionSteps()}" ajax="false" immediate="true" />
+							<p:commandButton value="Gravar" icon="fa fa-fw fa-floppy-o" rendered="#{missionMB.newRecordMissionStep}" action="#{missionMB.addMissionStep()}" ajax="false" update="growl" />
+							<p:commandButton value="Atualizar" icon="fa fa-fw fa-floppy-o" rendered="#{!missionMB.newRecordMissionStep}" action="#{missionMB.updateMissionStep()}" ajax="false" update="growl" />
+						</h:panelGroup>
+					</p:tab>
+					</p:wizard>
+				</h:panelGroup>
+				
+				
+
+        		</p:panel>
+        		</p:column>
+				</p:row>		            	
+			</p:panelGrid>
+			
+			</div>
+        </h:form>
+        </h:body>
+    </ui:define>
+ 
+</ui:composition>				
